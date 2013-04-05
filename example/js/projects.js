@@ -197,6 +197,37 @@ var page = {
 				tName:["island",'district']
 			});
 
+		page.pbudgetView = new wView.NameView(
+			{
+				model:wpmodel,
+				tEl:"#pbudget-template",
+				tName:[]
+			});
+
+		page.pbudgetView.specialUpdate = function(){
+
+			Backbone.Form.editors.List.Modal.ModalAdapter = Backbone.BootstrapModal;
+
+			//Main model definition
+			var budgetStore = Backbone.Model.extend({
+				schema: {
+					Budget: { type: 'List', itemType: 'Object', subSchema: {
+						type: { type: 'Select', options: ['Internal', 'External'], validators: ['required'] },
+						currency: { type: 'Select', options: ['Rf', '$'], validators: ['required'] },
+						amount: 'Number'
+					}}
+				}
+			});
+
+			var budget_store = new budgetStore();
+
+			var budgetForm = new Backbone.Form({
+				model: budget_store
+			}).render();
+
+			$('#budgetForm').append(budgetForm.el);
+		};
+
 		page.plocationView.specialUpdate = function(){
 			var districts = {
 				'Male': ['Henveiru', 'Maafannu', 'Galolhu', 'Machangolhi', 'Villigili','Hulhumale'],
@@ -308,6 +339,7 @@ var page = {
 
 		page.wizardView.insertView({ref:page.pinfoView,tab:'Details'});
 		page.wizardView.insertView({ref:page.pdatesView,tab:'Dates'});
+		page.wizardView.insertView({ref:page.pbudgetView,tab:'Budget'});
 		page.wizardView.insertView({ref:page.ppriorityView,tab:'Priority'});
 		page.wizardView.insertView({ref:page.plocationView,tab:'Location'});
 		page.wizardView.insertView({ref:page.confirmView,tab:'Confirm'});

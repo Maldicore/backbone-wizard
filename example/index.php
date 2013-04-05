@@ -288,6 +288,13 @@
 			</div>
 			</script>
 
+			<script id="pbudget-template" type="text/template">
+			<div class="wizard-view">
+				<div id="budgetForm">
+				</div>
+			</div>
+			</script>
+
 			<script id="ppriority-template" type="text/template">
 			<div class="wizard-view">
 				<h3>Priority</h3>
