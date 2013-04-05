@@ -1,0 +1,38 @@
+#wizard-body{
+	background-color: white;
+	margin:0;
+	padding:0;
+}
+#wizard-cont{
+	padding: 0;
+}
+#wizard-tabs{
+	background-color: ghostwhite;
+}
+#wizard-tabs li a{
+	padding-left: 20px;
+	color:#2FABE9;
+}
+#wizard-tabs li.active, #wizard-tabs li.active a {
+	background-color: #2FABE9;
+	border: 0;
+	color:white;
+}
+#wizard-pager{
+	float:right;
+	position: absolute;
+	right:20px;
+	top:0;
+}
+#wizard-action{
+	float:right;
+	position: absolute;
+	right:133px;
+	top:22px;
+	width: 103px;
+	height: 10px;
+	padding:0;
+	margin:0;
+	border-top: 0;
+	background-color: white;
+}
