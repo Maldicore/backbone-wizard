@@ -188,7 +188,37 @@ var page = {
 				tEl:"#pinfo-template",
 				tName:["name","description"]
 			});
-		page.pinfoView.specialUpdate = function(){
+		page.pinfoView.specialUpdate = function(){};
+
+		page.plocationView = new wView.NameView(
+			{
+				model:wpmodel,
+				tEl:"#plocation-template",
+				tName:["island",'district']
+			});
+
+		page.plocationView.specialUpdate = function(){
+			var districts = {
+				'Male': ['Henveiru', 'Maafannu', 'Galolhu', 'Machangolhi', 'Villigili','Hulhumale'],
+				'Fuvahmulah': ['Dhadimagu', 'Dhiguvaandu', 'Hoadhadu', 'Maadhadu','Maalegan','Miskiymagu','Funaadu','Dhiindigan']
+			};
+
+			//The form
+			var locationForm = new Backbone.Form({
+				schema: {
+					island: { type: 'Select', options: ['Male', 'Fuvahmulah'] },
+					district: { type: 'Select', options: districts.Male }
+				}
+			}).render();
+
+			locationForm.on('island:change', function(form, islandEditor) {
+				var island = islandEditor.getValue(),
+				newOptions = districts[island];
+
+				form.fields.district.editor.setOptions(newOptions);
+			});
+
+			$('#locationForm').append(locationForm.el);
 
 		};
 
@@ -230,8 +260,8 @@ var page = {
 		page.confirmView.saveData = function(data){
 
 			var o = JSON.parse(data);
-			console.log(o);
-			console.log(o.name);
+			// console.log(o);
+			// console.log(o.name);
 			wpmodel.save({
 				'name': o.name,
 				'description': o.description,
@@ -279,6 +309,7 @@ var page = {
 		page.wizardView.insertView({ref:page.pinfoView,tab:'Details'});
 		page.wizardView.insertView({ref:page.pdatesView,tab:'Dates'});
 		page.wizardView.insertView({ref:page.ppriorityView,tab:'Priority'});
+		page.wizardView.insertView({ref:page.plocationView,tab:'Location'});
 		page.wizardView.insertView({ref:page.confirmView,tab:'Confirm'});
 		// page.wizardView.render().el;
 		$('#wizard-container').html(page.wizardView.render().el);

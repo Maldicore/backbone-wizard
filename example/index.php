@@ -82,6 +82,9 @@
 		.script(rootPath+"js/libs/underscore-min.js").wait()
 		.script(rootPath+"js/libs/underscore.date.min.js")
 		.script(rootPath+"js/libs/backbone-min.js")
+		.script(rootPath+"js/libs/backbone-forms.js")
+		.script(rootPath+"js/libs/list.js")
+		.script(rootPath+"js/libs/backbone.bootstrap-modal.js")
 		.script(rootPath+"js/app.js")
 		.script(rootPath+"js/memorystore.js").wait()
 		.script(rootPath+"js/model.js").wait()
@@ -299,6 +302,14 @@
 				<!-- End of Priority -->
 			</div>
 			</script>
+
+			<script id="plocation-template" type="text/template">
+			<div class="wizard-view">
+				<div id="locationForm">
+				</div>
+			</div>
+			</script>
+
 
 			<script id="confirm-template" type="text/template">
 			<div class="wizard-view">
